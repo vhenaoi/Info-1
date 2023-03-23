@@ -1,0 +1,2 @@
+def despedida():
+    print('Adiós')
