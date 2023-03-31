@@ -2,13 +2,16 @@ def validar(valor,tipo):
     while True:
         try:
             if tipo == int:
-                valor = tipo(valor)
-                return valor
+                if valor.isdigit():
+                    return tipo(valor)
+                else:
+                    print("Error, deben ingresar números")
+                    valor = input("Ingrese el valor nuevamente: ")
             elif tipo == str:
                 if valor.isalpha():
-                    return valor
+                    return tipo(valor)
                 else:
-                    print("Error, no ingreso el valor solicitado tipo "+ str(tipo))
+                    print("Error, debe ingresar solo texto ")
                     valor = input("Ingrese el valor nuevamente: ")
             else:
                 return tipo(valor)
