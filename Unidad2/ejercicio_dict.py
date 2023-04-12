@@ -9,28 +9,34 @@ Número de identificación
 Dirección
 Teléfono
 '''
-from functions import input_numero
-from functions import no_contiene_numeros
+from functions import solicitar_data_comprador, validar
 
+total = 0
 comprador=[]
+articulos=[]
 cont_comp=0
-while cont_comp<=3:
+while True:
     if cont_comp==3:
-        menu=input_numero('1. Salir 2. Ingresar compra: ')
-        if menu==2:
-            break
+        ordenados = sorted(articulos, key=lambda art: art[1])
+        print("Estos son los articulos que esta apunto de comprar")
+        print(str(ordenados[0])+"\n"+str(ordenados[1])+"\n"+str(ordenados[2]))
+        for art in range(len(ordenados)):
+            total += ordenados[art][-1]
+        print("El total de la compra es de:" +str(total))
+        menu=input('1. Salir 2. Ingresar compra: ')
+        menu = validar(menu,int)
         if menu==1:
+            break
+        if menu==2:
             cont_comp-=1
-    nombre=no_contiene_numeros('Ingrese su nombre: ')
-    apellido=no_contiene_numeros('Ingrese su apellido: ')
-    id=input_numero('Ingrese su documento de identificación: ')
-    telefono=input_numero('Ingrese el número télefonico: ')
-    direccion=input('Ingrese la dirección :')
+            pass
+    nombre,apellido,id,telefono,direccion = solicitar_data_comprador()
     comprador=[nombre,apellido,id,direccion,telefono]
     
-    while True:
+    while cont_comp<=2:
         try:
-            articulo=input_numero('Seleccione el articulo a comprar\n1.Resonador\n2.Angiografía\n3.Radiografía')
+            articulo=input('Seleccione el articulo a comprar\n1.Resonador\n2.Angiografía\n3.Radiografía\n-')
+            articulo = validar(articulo,int)
             if articulo== 1 or articulo==2 or articulo==3:
                 if articulo==1:
                     articulo_dict={
@@ -43,7 +49,7 @@ while cont_comp<=3:
                     articulo_dict={
                         1: ['Artis', 'zee', 1000],
                         2:['Artis', 'one', 1100],
-                        3:['Artis', 'Q'],
+                        3:['Artis', 'Q', 2800],
                         4: ['Artis', 'icono', 1500]
                     }
                 elif articulo==3:
@@ -57,11 +63,13 @@ while cont_comp<=3:
                 print('Seleccione las caracteristicas del producto')
                 for k,v in articulo_dict.items():
                     print('Llave',k,'Valor',v)
-                opcion=input_numero('Indique su selección ')
+                opcion=input('Indique su selección ')
+                opcion = validar(opcion,int)
                 if opcion in articulo_dict.keys():
-                    comprador.append(articulo_dict[opcion])
+                    articulos.append(articulo_dict[opcion])
+                    print("El comprador "+str(comprador[0])+" "+str(comprador[1])+" con CC: "+str(comprador[2])+" acaba de agregar al carrito el producto "+str(articulo_dict[opcion][0])+" "+str(articulo_dict[opcion][1]))
                     cont_comp+=1  
-                    break
+
         except: 
             print('ingrese valor valido')
             continue
