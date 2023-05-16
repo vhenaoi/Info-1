@@ -1,0 +1,19 @@
+{
+    "clients": [
+        {
+            "nombre": "Carlos Andr\u00e9s",
+            "apellidos": "Gutierrez Medina",
+            "edad": 27
+        },
+        {
+            "nombre": "Maria Cristina",
+            "apellidos": "Mar\u00edn Ortiz",
+            "edad": 31
+        },
+        {
+            "nombre": "Nancy Cecilia",
+            "apellidos": "Cortes Ramos",
+            "edad": 36
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+|luisa|zapata|18|F|sura|
+|jorge|Pinzon|18|M|sura|
+|sura|Manuela|Carmona|18|F|
+|sanitas|Juan jose|Arias|18|M|
